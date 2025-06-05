@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Organizational Management Quiz - Instant Answer Reveal</title>
+<style>
+  body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #4b79a1, #283e51);
+    color: #f0f0f0;
+    padding: 2rem;
+    max-width: 1000px;
+    margin: auto;
+  }
+  h1 {
+    text-align: center;
+    margin-bottom: 1rem;
+  }
+  form {
+    background: #1f2a38;
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 0 15px #09203f;
+  }
+  .question {
+    margin-bottom: 1.5rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid #3a4759;
+  }
+  .question h3 {
+    margin-bottom: 0.5rem;
+    font-size: 1.1rem;
+  }
+  label {
+    display: block;
+    margin-bottom: 0.3rem;
+    cursor: pointer;
+    font-size: 0.95rem;
+  }
+  input[type="radio"] {
+    margin-right: 0.5rem;
+  }
+  .feedback {
+    margin-top: 0.3rem;
+    font-size: 0.9rem;
+  }
+  .correct-answer {
+    color: #7fff7f;
+    font-style: italic;
+  }
+  .user-answer {
+    margin-top: 0.25rem;
+    font-weight: bold;
+    font-size: 0.9rem;
+  }
+  .correct {
+    color: #7fff7f;
+  }
+  .incorrect {
+    color: #ff6f6f;
+  }
+  button {
+    background: #4b79a1;
+    color: #f0f0f0;
+    border: none;
+    padding: 0.75rem 1.5rem;
+    font-size: 1.1rem;
+    border-radius: 10px;
+    cursor: pointer;
+    display: block;
+    margin: 2rem auto 0;
+    box-shadow: 0 0 10px #83a4d4;
+    transition: background 0.3s ease;
+  }
+  button:hover {
+    background: #1f2a38;
+  }
+  .result {
+    background: #283e51;
+    border-radius: 10px;
+    padding: 1rem;
+    margin-top: 1.5rem;
+    text-align: center;
+    font-size: 1.25rem;
+  }
+</style>
+</head>
+<body>
+  <h1>Organizational Management Quiz - Instant Answer Reveal</h1>
+  <form id="quizForm" onsubmit="return false;">
+    <!-- Questions will be inserted here by JavaScript -->
+  </form>
+
+  <button type="button" id="submitBtn">Submit</button>
+  <div id="result" class="result" aria-live="polite"></div>
+
+<script>
+  // Core questions based on provided content
+  const questionData = [
+    {
+      question: "What is Management by Objectives (MBO)?",
+      options: [
+        "A strategic management approach where organizational goals are defined and communicated to employees.",
+        "A method of budgeting only.",
+        "A leadership style avoiding goal setting.",
+        "A forecasting tool."
+      ],
+      answer: "a"
+    },
+    {
+      question: "Which is NOT a key element of MBO?",
+      options: [
+        "Goal specificity",
+        "Participative decision making",
+        "Absence of feedback",
+        "Explicit performance evaluation period"
+      ],
+      answer: "c"
+    },
+    {
+      question: "First step in goal setting under MBO is:",
+      options: [
+        "Writing down goals",
+        "Review the organization’s mission statement",
+        "Evaluating resources",
+        "Review results"
+      ],
+      answer: "b"
+    },
+    {
+      question: "Planning involves:",
+      options: [
+        "Setting goals, defining strategies, and organizing tasks/resources",
+        "Hiring employees",
+        "Only financial budgeting",
+        "Monitoring attendance"
+      ],
+      answer: "a"
+    },
+    {
+      question: "Scheduling a project includes:",
+      options: [
+        "Detailing activities order, person responsible, and deadlines",
+        "Only delegating work",
+        "Budget tracking",
+        "Employee appraisals"
+      ],
+      answer: "a"
+    },
+    {
+      question: "What is environmental scanning?",
+      options: [
+        "Cleaning the workplace",
+        "Screening info to anticipate environment changes",
+        "Evaluating employee performance",
+        "Setting organizational rules"
+      ],
+      answer: "b"
+    },
+    {
+      question: "What does a Gantt chart show?",
+      options: [
+        "Actual and planned output over time",
+        "Sales trends",
+        "Organizational hierarchy",
+        "Employee satisfaction"
+      ],
+      answer: "a"
+    },
+    {
+      question: "Slack time in project management is:",
+      options: [
+        "Time an activity can be delayed without delaying the project",
+        "Total project time",
+        "Deadline date",
+        "Meeting duration"
+      ],
+      answer: "a"
+    },
+    {
+      question: "Critical path in a PERT network is:",
+      options: [
+        "Longest sequence of uninterrupted activities",
+        "Shortest route",
+        "Optional tasks",
+        "Manager-assigned tasks"
+      ],
+      answer: "a"
+    },
+    {
+      question: "Breakeven analysis identifies:",
+      options: [
+        "Point where total revenue equals total costs",
+        "Maximum profit achieved",
+        "Lowest operational cost",
+        "Best marketing time"
+      ],
+      answer: "a"
+    },
+    {
+      question: "First step in decision making process:",
+      options: [
+        "Implementing solutions",
+        "Identify problem and criteria",
+        "Analyzing alternatives",
+        "Evaluating effectiveness"
+      ],
+      answer: "b"
+    },
+    {
+      question: "Structured problems are:",
+      options: [
+        "Straightforward and familiar",
+        "Ambiguous and new",
+        "Unimportant",
+        "Urgent issues only"
+      ],
+      answer: "a"
+    },
+    {
+      question: "Quantitative forecasting uses:",
+      options: [
+        "Mathematical rules on past data",
+        "Opinions of experts",
+        "Environmental scanning",
+        "Benchmarking"
+      ],
+      answer: "a"
+    },
+    {
+      question: "Benchmarking means:",
+      options: [
+        "Searching for best practices internally only",
+        "Searching for best practices among competitors or others",
+        "Setting employee goals",
+        "Allocating resources"
+      ],
+      answer: "b"
+    },
+    {
+      question: "Which is NOT a typical management resource?",
+      options: [
+        "Financial assets",
+        "Physical assets",
+        "Employee opinions",
+        "Intangible assets"
+      ],
+      answer: "c"
+    },
+    {
+      question: "Load chart helps:",
+      options: [
+        "Schedule capacity by departments or resources",
+        "Track finances",
+        "Assign daily tasks",
+        "Forecast markets"
+      ],
+      answer: "a"
+    },
+    {
+      question: "Under uncertainty, managers must rely on:",
+      options: [
+        "Detailed data",
+        "Intuition and gut feelings",
+        "Company policies",
+        "External consultants"
+      ],
+      answer: "b"
+    },
+    {
+      question: "Maximin decision rule aims to:",
+      options: [
+        "Maximize maximum payoff",
+        "Maximize minimum payoff",
+        "Minimize maximum regret",
+        "Ignore risks"
+      ],
+      answer: "b"
+    },
+    {
+      question: "Participative decision making means:",
+      options: [
+        "Managers decide alone",
+        "Employees are involved in decisions",
+        "Only supervisors make decisions",
+        "No decisions are made"
+      ],
+      answer: "b"
+    },
+    {
+      question: "Feedback in MBO is used to:",
+      options: [
+        "Punish employees",
+        "Provide info on progress and improve performance",
+        "Avoid communication",
+        "Assign blame"
+      ],
+      answer: "b"
+    }
+  ];
+
+  // Create questions dynamically
+  function createQuestionsHTML() {
+    const form = document.getElementById("quizForm");
+    questionData.forEach((qObj, index) => {
+      const qDiv = document.createElement("div");
+      qDiv.className = "question";
+      qDiv.id = "q" + (index + 1);
+
+      let html = `<h3>${index + 1}. ${qObj.question}</h3>`;
+      qObj.options.forEach((option, idx) => {
+        html += `<label><input type="radio" name="q${index + 1}" value="${String.fromCharCode(97 + idx)}"> ${option}</label>`;
+      });
+      html += `<div class="feedback" aria-live="polite"></div>`;
+      qDiv.innerHTML = html;
+      form.appendChild(qDiv);
+    });
+  }
+
+  // Handle answer click
+  function handleAnswerClick(event) {
+    const input = event.target;
+    if (input.tagName !== 'INPUT' || input.type !== 'radio') return;
+
+    const qName = input.name;
+    const selectedVal = input.value;
+    const questionDiv = document.getElementById(qName);
+    const correctVal = questionData[parseInt(qName.slice(1)) - 1].answer;
+
+    const feedbackDiv = questionDiv.querySelector(".feedback");
+    feedbackDiv.innerHTML = ""; // clear previous
+
+    // Show correct answer text
+    let correctLabel = null;
+    const labels = questionDiv.querySelectorAll("label");
+    labels.forEach(label => {
+      const radio = label.querySelector("input");
+      if (radio.value === correctVal) {
+        correctLabel = label.textContent.trim();
+      }
+    });
+
+    // Highlight user answer label color
+    labels.forEach(label => {
+      const radio = label.querySelector("input");
+      if (radio.value === selectedVal) {
+        if (selectedVal === correctVal) {
+          label.style.color = '#7fff7f'; // green
+        } else {
+          label.style.color = '#ff6f6f'; // red
+        }
+      } else {
+        label.style.color = '';
+      }
+    });
+
+    // Build feedback html
+    const userAnswerText = labels.forEach(label => {
+      const radio = label.querySelector("input");
+      if (radio.value === selectedVal) return label.textContent.trim();
+    }) || "";
+
+    // Show user answer and correct answer
+    feedbackDiv.innerHTML = `<span class="user-answer ${selectedVal === correctVal ? 'correct' : 'incorrect'}">Your answer: ${userAnswerText}</span><br><span class="correct-answer">Correct answer: ${correctLabel}</span>`;
+  }
+
+  // Initialize
+  createQuestionsHTML();
+  const form = document.getElementById("quizForm");
+  form.addEventListener("change", handleAnswerClick);
+</script>
+</body>
+</html>
